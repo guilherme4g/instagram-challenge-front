@@ -1,5 +1,4 @@
-
-export default function PrivacyPolicy () {
+function PrivacyPolicy () {
   return (
     <div>
       <h2>Política Privacidade</h2>
@@ -56,3 +55,5 @@ export default function PrivacyPolicy () {
     </div>
     );
 };
+
+export default PrivacyPolicy;

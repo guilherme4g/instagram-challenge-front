@@ -7,7 +7,7 @@ export default function Router() {
     return (
         <BrowserRouter>
             <Route path="/" exact component={Home} />
-            <Route path="/privacy" exact component={PrivacyPolicy} />
+            <Route path="/privacy" component={PrivacyPolicy} />
         </BrowserRouter>
     )
 }
