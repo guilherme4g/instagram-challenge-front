@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import {  useLocation } from "react-router-dom";
+import {  Redirect, useLocation } from "react-router-dom";
 
 import api from "../../api/api";
 
@@ -8,6 +8,7 @@ import './Home.css';
 function Home(props) {
 
   const [token, setToken] = useState('');
+  const [profile, setProfile] = useState(null);
 
   function useQuery() {
     return new URLSearchParams(useLocation().search);
@@ -29,24 +30,25 @@ function Home(props) {
         token: token
       }
     }).then(res => {
-      console.log(res);
+      setProfile(res.data);
     }).catch(error => {
       console.log(error);
     })
   }
 
-  return (
-    <div className="home-page-wrapper">
-      <label htmlFor=""> Inserir token: </label>
-      <input onChange={e => onChangeInput(e.target.value)} value={token} type="text"/>
-      <button onClick={onClickButton}>
-        Buscar Dados
-      </button>
-      {/* <div>
-        <a href="https://api.instagram.com/oauth/authorize?client_id=514078809607675&redirect_uri=https://frosty-rosalind-dca014.netlify.app/&scope=user_profile,user_media&response_type=code"> capturar dados </a>
-      </div>   */}
-    </div>
-  );
+  if (profile) {
+    return ( <Redirect to={{ pathname: "/profile", state: { user: profile } }} /> )
+  } else {
+    return (
+      <div className="home-page-wrapper">
+        <label htmlFor=""> Inserir token: </label>
+        <input onChange={e => onChangeInput(e.target.value)} value={token} type="text"/>
+        <button onClick={onClickButton}>
+          Buscar Dados
+        </button>
+      </div>
+    );
+  }
 }
 
 export default Home;

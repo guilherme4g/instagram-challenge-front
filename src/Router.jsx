@@ -1,13 +1,13 @@
 import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import Home from "./pages/Home/Home";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
+import Profile from "./pages/Profile/Profile";
 
 export default function Router() {   
     return (
         <BrowserRouter>
             <Route path="/" exact component={Home} />
-            <Route path="/privacy" component={PrivacyPolicy} />
+            <Route path="/profile" component={Profile} />
         </BrowserRouter>
     )
 }
